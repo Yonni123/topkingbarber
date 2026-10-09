@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Top King Barber</title>
+<meta name="description" content="Top King Barber à Pau : coupes homme, dégradés, taille de barbe et soins. Réservez votre rendez-vous en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: dark barbershop ground, giant condensed headline over a tall photo,
+   one barber-pole stripe as the single recurring motif, brass for actions. */
+:root {
+  --bg: #100e0d;
+  --surface: #1a1714;
+  --fg: #efe8dc;
+  --muted: #a89f92;
+  --line: #2f2a25;
+  --brass: #cfa652;
+  --on-brass: #17120a;
+  --pole-red: #c0392b;
+  --pole-blue: #2f5da8;
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f2ede4; --surface: #e9e2d6; --fg: #17130f; --muted: #5c5448;
+    --line: #cdc4b3; --brass: #84601a; --on-brass: #fff8e8;
+    --pole-red: #b02a1d; --pole-blue: #2a4f95; color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f2ede4; --surface: #e9e2d6; --fg: #17130f; --muted: #5c5448;
+  --line: #cdc4b3; --brass: #84601a; --on-brass: #fff8e8;
+  --pole-red: #b02a1d; --pole-blue: #2a4f95; color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+/* barber-pole stripe */
+.pole {
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--pole-red) 0 12px,
+    var(--fg) 12px 24px,
+    var(--pole-blue) 24px 36px,
+    var(--fg) 36px 48px
+  );
+}
+
+/* header */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+}
+.brand {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+.brand span { color: var(--brass); }
+.nav { display: flex; align-items: center; gap: clamp(14px, 3vw, 32px); }
+.nav a.link {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav a.link:hover { color: var(--fg); }
+
+.btn {
+  display: inline-block;
+  background: var(--brass);
+  color: var(--on-brass);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 22px;
+  border: 2px solid var(--brass);
+  border-radius: 2px;
+  transition: background 0.15s, color 0.15s;
+}
+.btn:hover { background: transparent; color: var(--brass); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--brass); color: var(--brass); }
+
+/* hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+  padding-block: clamp(32px, 6vw, 72px);
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 16px;
+}
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0;
+}
+h1 {
+  font-size: clamp(3.4rem, 10.5vw, 8rem);
+  line-height: 0.88;
+  letter-spacing: 0.005em;
+}
+h1 em { font-style: normal; color: var(--brass); }
+.lede {
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin: 24px 0 32px;
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-photo {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+  border-radius: 2px;
+}
+
+/* sections */
+section { padding-block: clamp(48px, 8vw, 104px); }
+h2 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 0.95; }
+.section-note { color: var(--muted); max-width: 40ch; margin: 16px 0 0; }
+
+/* menu */
+.menu-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(24px, 6vw, 80px);
+  align-items: start;
+}
+.menu { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.menu li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 20px;
+  align-items: baseline;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.menu .name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+.menu .price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: var(--brass);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.menu .desc { color: var(--muted); font-size: 0.98rem; margin: 0; }
+.menu .time {
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.fine { color: var(--muted); font-size: 0.88rem; margin: 18px 0 0; }
+
+/* salon */
+.salon { background: var(--surface); }
+.salon-photo {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  object-position: 50% 60%;
+  border-radius: 2px;
+  margin-top: 32px;
+}
+.salon-text {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(20px, 5vw, 64px);
+  align-items: end;
+}
+.salon-text p { color: var(--muted); margin: 0; max-width: 52ch; }
+
+/* ritual */
+.ritual-head { max-width: 60ch; margin-bottom: 36px; }
+.ritual-head p { color: var(--muted); margin: 20px 0 0; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); }
+.pair figure { margin: 0; min-width: 0; }
+.pair img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; }
+.pair figcaption {
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 12px;
+}
+
+/* contact */
+.contact { border-top: 1px solid var(--line); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 6vw, 80px);
+  margin-top: 36px;
+}
+.contact h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 14px;
+}
+.hours { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 24px; }
+.hours dt { font-weight: 600; }
+.hours dd { margin: 0; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hours .closed { color: var(--muted); opacity: 0.7; }
+.contact p { margin: 0 0 18px; }
+.contact .place { font-size: 1.15rem; }
+
+footer { padding-block: 28px 36px; color: var(--muted); font-size: 0.88rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+@media (max-width: 820px) {
+  .nav a.link { display: none; }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero-photo { aspect-ratio: 1 / 1; }
+  .menu-grid, .salon-text, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .salon-photo { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 460px) {
+  .brand { font-size: 1.3rem; }
+  .btn { padding: 12px 16px; }
+  .menu .name { font-size: 1.45rem; }
+  .menu .price { font-size: 1.6rem; }
+  .pair { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#top">Top King <span>Barber</span></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="link" href="#carte">La carte</a>
+        <a class="link" href="#salon">Le salon</a>
+        <a class="link" href="#contact">Horaires</a>
+        <a class="btn" href="https://topkingbarber.base44.app/" target="_blank" rel="noopener">Réserver</a>
+      </nav>
+    </div>
+  </div>
+  <div class="pole" aria-hidden="true"></div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Barbier à Pau</p>
+        <h1>Une expérience <em>différente.</em></h1>
+        <p class="lede">Coupes homme, dégradés, tailles de barbe et soins. Choisissez votre prestation et réservez votre créneau en ligne.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://topkingbarber.base44.app/" target="_blank" rel="noopener">Réserver mon rendez-vous</a>
+          <a class="btn ghost" href="#carte">Voir la carte</a>
+        </div>
+      </div>
+      <img class="hero-photo" src="img/hero-scissors.jpg" width="671" height="671" alt="Un barbier tatoué coupe les cheveux d'un client aux ciseaux et au peigne, dans un salon éclairé de lampes chaudes.">
+    </div>
+  </div>
+
+  <section id="carte">
+    <div class="wrap menu-grid">
+      <div>
+        <h2>La carte</h2>
+        <p class="section-note">Des coupes nettes, une barbe soignée, des finitions au rasoir.</p>
+      </div>
+      <div>
+        <ul class="menu">
+          <li>
+            <span class="name">Coupe homme</span><span class="price">18 €</span>
+            <p class="desc">Ciseaux ou tondeuse, finitions du contour.</p><span class="time">30 min</span>
+          </li>
+          <li>
+            <span class="name">Dégradé</span><span class="price">20 €</span>
+            <p class="desc">Dégradé progressif, du plus court au plus long.</p><span class="time">40 min</span>
+          </li>
+          <li>
+            <span class="name">Taille de barbe</span><span class="price">12 €</span>
+            <p class="desc">Tondeuse, contours et serviette chaude.</p><span class="time">20 min</span>
+          </li>
+          <li>
+            <span class="name">Coupe + barbe</span><span class="price">28 €</span>
+            <p class="desc">La coupe de votre choix et la taille de barbe.</p><span class="time">1 h</span>
+          </li>
+          <li>
+            <span class="name">Rasage serviette chaude</span><span class="price">18 €</span>
+            <p class="desc">Vapeur, serviette chaude et rasoir.</p><span class="time">30 min</span>
+          </li>
+          <li>
+            <span class="name">Enfant</span><span class="price">14 €</span>
+            <p class="desc">Coupe pour les moins de 12 ans.</p><span class="time">25 min</span>
+          </li>
+        </ul>
+        <p class="fine">Tarifs indicatifs, à confirmer au salon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="salon" id="salon">
+    <div class="wrap">
+      <div class="salon-text">
+        <h2>Le salon</h2>
+        <p>Deux postes de coupe avec lavabo et miroir, un fauteuil de barbier en cuir et le poteau rouge, blanc et bleu au mur. Le tout sous un éclairage violet.</p>
+      </div>
+      <img class="salon-photo" src="img/shop-interior.jpg" width="1400" height="1292" loading="lazy" alt="L'intérieur du salon Top King Barber : un fauteuil de barbier en cuir brun, deux postes de coiffure noirs avec lavabos et miroirs, et un poteau de barbier au mur.">
+    </div>
+  </section>
+
+  <section id="rituel">
+    <div class="wrap">
+      <div class="ritual-head">
+        <h2>Le rituel</h2>
+        <p>La barbe se travaille à la tondeuse, puis au rasoir pour les contours. La serviette chaude et la vapeur ouvrent la peau avant la lame.</p>
+      </div>
+      <div class="pair">
+        <figure>
+          <img src="img/beard-trim.jpg" width="671" height="671" loading="lazy" alt="Un barbier en lunettes teintées taille la barbe d'un client allongé, une serviette sur le front.">
+          <figcaption>Taille de barbe</figcaption>
+        </figure>
+        <figure>
+          <img src="img/hot-towel-razor.jpg" width="671" height="671" loading="lazy" alt="Un barbier passe le rasoir sur un client sous la vapeur, avec une serviette blanche autour du cou.">
+          <figcaption>Rasoir et vapeur</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Horaires et accès</h2>
+      <div class="contact-grid">
+        <div>
+          <h3>Horaires</h3>
+          <dl class="hours">
+            <dt>Lundi</dt><dd class="closed">Fermé</dd>
+            <dt>Mardi – Vendredi</dt><dd>9 h 30 – 19 h 00</dd>
+            <dt>Samedi</dt><dd>9 h 00 – 18 h 00</dd>
+            <dt>Dimanche</dt><dd class="closed">Fermé</dd>
+          </dl>
+          <p class="fine">Horaires à titre d'exemple, à mettre à jour.</p>
+        </div>
+        <div>
+          <h3>Rendez-vous</h3>
+          <p class="place">Top King Barber<br>Pau (64000)</p>
+          <div class="cta-row">
+            <a class="btn" href="https://topkingbarber.base44.app/" target="_blank" rel="noopener">Réserver en ligne</a>
+            <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Top+King+Barber+Pau" target="_blank" rel="noopener">Itinéraire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="pole" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Top King Barber</span>
+    <span>Pau · Coupes homme, dégradés, barbe et soins</span>
+  </div>
+</footer>
+</body>
+</html>
